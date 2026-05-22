@@ -1,1 +1,1 @@
-# aspnet-week2-mvc-product-catalog
+# AspNetWeek2.BookStore.Mvc
