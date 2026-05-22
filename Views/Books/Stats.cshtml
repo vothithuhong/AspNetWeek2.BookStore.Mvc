@@ -1,0 +1,112 @@
+@model BookStatsViewModel
+
+@{
+    ViewData["Title"] = "Book Stats";
+}
+
+<div class="page-header">
+    <div>
+        <h2 class="page-title">Book Statistics</h2>
+
+        <p class="page-description">
+            Trang này hiển thị thống kê tổng quan của cửa hàng sách.
+        </p>
+    </div>
+
+    <a class="btn btn-light" href="/Book">
+        Quay lại danh sách
+    </a>
+</div>
+
+<div class="stat-grid">
+
+    <div class="stat-card">
+        <div class="stat-number">@Model.TotalBooks</div>
+        <div class="stat-label">Tổng số sách</div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-number">@Model.TotalQuantity</div>
+        <div class="stat-label">Tổng số lượng tồn kho</div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-number">@Model.TotalInventoryValueText</div>
+        <div class="stat-label">Tổng giá trị tồn kho</div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-number text-danger">
+            @Model.OutOfStockCount
+        </div>
+
+        <div class="stat-label">
+            Sách đã hết hàng
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-number text-warning">
+            @Model.NeedReorderCount
+        </div>
+
+        <div class="stat-label">
+            Sách cần nhập thêm
+        </div>
+    </div>
+
+</div>
+
+<div class="info-panel">
+
+    <h4>Đánh giá tồn kho</h4>
+
+    @if (Model.OutOfStockCount > 0)
+    {
+        <p class="text-danger">
+            Có sách đã hết hàng.
+        </p>
+    }
+    else if (Model.NeedReorderCount > 0)
+    {
+        <p class="text-warning">
+            Một số sách sắp hết.
+        </p>
+    }
+    else
+    {
+        <p class="text-success">
+            Tồn kho hiện tại ổn định.
+        </p>
+    }
+
+</div>
+
+<table class="table table-bordered mt-4">
+
+    <tr>
+        <th>Tổng số sách</th>
+        <td>@Model.TotalBooks</td>
+    </tr>
+
+    <tr>
+        <th>Tổng số lượng tồn kho</th>
+        <td>@Model.TotalQuantity</td>
+    </tr>
+
+    <tr>
+        <th>Tổng giá trị tồn kho</th>
+        <td>@Model.TotalInventoryValueText</td>
+    </tr>
+
+    <tr>
+        <th>Sách hết hàng</th>
+        <td>@Model.OutOfStockCount</td>
+    </tr>
+
+    <tr>
+        <th>Sách cần nhập thêm</th>
+        <td>@Model.NeedReorderCount</td>
+    </tr>
+
+</table>

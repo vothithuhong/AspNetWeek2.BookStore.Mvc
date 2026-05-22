@@ -1,75 +1,37 @@
-@model List<ProductListItemViewModel>
-
-@{
-    ViewData["Title"] = "Product Catalog";
-    var totalItems = Model.Count;
+﻿@{
+    ViewData["Title"] = "Home";
 }
 
-<div class="page-header">
-    <div>
-        <h2 class="page-title">Product Catalog</h2>
-        <p class="page-description">
-            Đây là trang danh sách sản phẩm của cửa hàng.
-        </p>
-    </div>
+<div class="lab-hero">
+    <h1>ASP.NET Core MVC Lab02</h1>
 
-    <div>
-        <a class="btn btn-primary" href="/Products/Stats">
-            Xem thống kê tồn kho
-        </a>
-    </div>
+    <p>
+        Bài Lab này hướng dẫn xây dựng một website MVC cơ bản
+        <br />
+        để hiển thị danh mục sản phẩm và tình trạng tồn kho.
+    </p>
 </div>
 
 <div class="info-panel">
-    <strong>Tổng số sản phẩm:</strong> @totalItems
+    <h4>Mục tiêu chính của Lab02</h4>
+    <p>
+        Hiểu và sử dụng Controller, ViewModel và Razor Syntax
+        để hiển thị dữ liệu trong ASP.NET Core MVC.
+    </p>
 </div>
 
-@if (Model.Count == 0)
-{
-    <p>Chưa có sản phẩm nào trong hệ thống.</p>
-}
-else
-{
-    <table class="table table-bordered table-striped align-middle">
-        <thead>
-            <tr>
-                <th>SKU</th>
-                <th>Tên sản phẩm</th>
-                <th>Nhóm</th>
-                <th>Giá bán</th>
-                <th>Số lượng</th>
-                <th>Giá trị tồn kho</th>
-                <th>Trạng thái</th>
-                <th>Chi tiết</th>
-            </tr>
-        </thead>
+<h3>Luồng xử lý chính trong MVC</h3>
 
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.Sku</td>
-                    <td>@item.Name</td>
-                    <td>@item.Category</td>
-                    <td>@item.PriceText</td>
-                    <td>@item.Quantity</td>
-                    <td>@item.InventoryValueText</td>
-                    <td>
-                        <span class="@item.StockStatusClass">
-                            @item.StockStatus
-                        </span>
-                    </td>
-                    <td>
-                        <a href="/Products/Detail/@item.Id">Xem</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+<ol class="flow-list">
+    <li>1. User gửi request đến URL.</li>
+    <li>2. Controller Action nhận request.</li>
+    <li>3. Controller gọi Service để lấy dữ liệu.</li>
+    <li>4. Controller chuyển dữ liệu sang ViewModel.</li>
+    <li>5. View dùng Razor để render HTML và trả về cho trình duyệt.</li>
+</ol>
 
-<p class="mt-4">
-    <a class="btn btn-light" href="/">
-        Quay lại trang chủ
+<div class="text-center mt-4">
+    <a class="btn btn-primary btn-lg" href="/Books">
+        Đi đến Book Catalog
     </a>
-</p>
+</div>
